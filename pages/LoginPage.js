@@ -1,14 +1,13 @@
-// pages/LoginPage.js
 class LoginPage {
     constructor(page) {
         this.page = page;
-        this.usernameField = page.getByPlaceholder('Enter Username');
-        this.passwordField = page.getByPlaceholder('Enter Password');
-        this.submitButton = page.getByRole('button', { name: 'Submit' });
+        this.usernameField = page.locator('#username');
+        this.passwordField = page.locator('#password');
+        this.submitButton = page.locator('button[type="submit"]');
     }
 
     async navigate() {
-        await this.page.goto('https://example.com/login'); // replace with your app login URL
+        await this.page.goto('https://the-internet.herokuapp.com/login');
     }
 
     async login(username, password) {
