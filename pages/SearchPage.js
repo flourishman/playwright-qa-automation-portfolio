@@ -1,19 +1,19 @@
 class SearchPage {
     constructor(page) {
         this.page = page;
-        // We define our elements here in one clean place
-        this.searchField = page.getByPlaceholder('Search products...');
+        // Recommended Playwright user-facing locator
+        this.searchInput = page.getByRole('searchbox', { name: 'Search Wikipedia' });
         this.searchButton = page.getByRole('button', { name: 'Search' });
-        this.resultsText = page.getByText('10 items found');
     }
 
     async navigate() {
-        await this.page.goto('https://mystore.com');
+        await this.page.goto('https://en.wikipedia.org/wiki/Main_Page');
     }
 
-    async searchForProduct(productName) {
-        await this.searchField.fill(productName);
+    async search(query) {
+        await this.searchInput.fill(query);
         await this.searchButton.click();
     }
 }
+
 module.exports = { SearchPage };

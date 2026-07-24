@@ -1,14 +1,15 @@
 const { test, expect } = require('@playwright/test');
-const { SearchPage } = require('./SearchPage');
+const { SearchPage } = require('../../pages/SearchPage');
 
 test('User can search for a product smoothly', async ({ page }) => {
-    // Initialize our page object
     const searchPage = new SearchPage(page);
 
-    // Run our actions cleanly
+    // 1. Navigate to search page
     await searchPage.navigate();
-    await searchPage.searchForProduct('Wireless Mouse');
 
-    // Make our clean assertion
-    await expect(searchPage.resultsText).toBeVisible();
+    // 2. Perform search
+    await searchPage.search('Playwright');
+
+    // 3. Assert search results page title
+    await expect(page).toHaveTitle(/Playwright - Wikipedia/i);
 });
